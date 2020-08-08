@@ -1,0 +1,23 @@
+<div>
+  <app-page-header [heading]="'Administration'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          {{'Vous pouvez fixer le taux de réussite' | translate }}
+        </div>
+        &nbsp;
+  <form>
+    <div class="form-row align-items-center">
+      <div class="col-auto"> 
+        <input type="text" name="taux" [(ngModel)]="taux" id="taux" class="form-control mb-2"  placeholder="{{ 'Taux de réussite' | translate }}">
+      </div> 
+      <div class="col-auto">
+        <button type="submit" (click)="putTaux()" class="btn btn-primary mb-8">{{'Valider' | translate}}</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,113 @@
+<div>
+  <app-page-header [heading]="'Administration'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          Fixation des pondérations des formules
+        </div>
+        &nbsp;
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" colspan="2">{{'Forum de discussion' | translate}}</th>
+
+              <th scope="col" colspan="2">{{'Facebook' | translate}}</th>
+              <th scope="col" colspan="2">{{'Twitter' | translate}}</th>
+              <th scope="col" colspan="3">{{'YouTube' | translate}}</th>
+              <th scope="col" colspan="1">{{'Action' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>{{'Negative' | translate}}</th>
+              <th>{{'Positive' | translate}}</th>
+              <th>{{'Likes' | translate}}</th>
+              <th>{{'Comments' | translate}}</th>
+              <th>{{'Likes' | translate}} </th>
+              <th>{{'Replies' | translate}}</th>
+              <th>{{'Likes' | translate}}</th>
+              <th>{{'Dislikes' | translate}}</th>
+              <th>{{'Views'  | translate}}</th>
+            </tr>
+            <tr *ngFor="let pond of ponderations;">
+              <td>{{pond.negative_forum}}</td>
+              <td>{{pond.positive_forum}}</td>
+              <td>{{pond.total_likes_facebook}}</td>
+              <td>{{pond.total_comments_facebook}}</td>    
+              <td>{{pond.total_likes_twitter}}</td>
+              <td>{{pond.total_replies_twitter}}</td>
+              <td>{{pond.total_likes_youtube}}</td>
+              <td>{{pond.total_dislikes_youtube}}</td>
+              <td>{{pond.views_youtube}}</td>
+              <td>
+                <button pTooltip="{{'Edit' | translate}}" (click)="showDialog(pond)"
+                  class="btn btn-primary" tooltipPosition="left"><i
+                      class="fa fa-pencil-square-o"></i></button> 
+              
+              </td>
+          
+            </tr>
+
+          </tbody>
+
+        </table>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p-dialog header="Edit" [(visible)]="display" [modal]="true">
+  <form>
+      <div class="form-content">
+          <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" name="negative" required
+              [(ngModel)]="selected.negative_forum" id="negative"  placeholder="{{ 'negative_forum' | translate }}">
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" name="positive" required
+              [(ngModel)]="selected.positive_forum"  id="positive" placeholder="{{ 'positive_forum' | translate }}">
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control input-underline input-lg" name="total_likes_facebook" required
+              [(ngModel)]="selected.total_likes_facebook" id="total_likes_facebook" placeholder="{{ 'total_likes_facebook' | translate }}">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" name="pond.total_comments_facebook" required
+            [(ngModel)]="selected.total_comments_facebook" id="pond.total_comments_facebook" placeholder="{{ 'pond.total_comments_facebook' | translate }}">
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control input-underline input-lg" name="total_likes_twitter" required
+          [(ngModel)]="selected.total_likes_twitter" id="total_likes_twitter" placeholder="{{ 'total_likes_twitter' | translate }}">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control input-underline input-lg" name="total_replies_twitter" required
+        [(ngModel)]="selected.total_replies_twitter" id="total_replies_twitter" placeholder="{{ 'total_replies_twitter' | translate }}">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control input-underline input-lg" name="total_likes_youtube" required
+      [(ngModel)]="selected.total_likes_youtube" id="total_likes_youtube" placeholder="{{ 'total_likes_youtube' | translate }}">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control input-underline input-lg" name="total_dislikes_youtube" required
+    [(ngModel)]="selected.total_dislikes_youtube" id="total_dislikes_youtube" placeholder="{{ 'total_dislikes_youtube' | translate }}">
+</div>
+<div class="form-group">
+  <input type="text" class="form-control input-underline input-lg" name="views_youtube" required
+  [(ngModel)]="selected.views_youtube" id="views_youtube" placeholder="{{ 'views_youtube' | translate }}">
+</div>
+
+      </div>
+  </form>
+
+ <p-footer>
+      <button type="button" pButton icon="pi pi-check" (click)="display=false; save(selected)" label="Save"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="display=false; selected={}" label="Return"
+          class="ui-button-secondary"></button>
+  </p-footer>
+
+</p-dialog>

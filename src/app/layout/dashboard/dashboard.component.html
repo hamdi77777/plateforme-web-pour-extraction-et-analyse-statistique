@@ -1,0 +1,36 @@
+<div>
+    <h2 class="text-muted"> Dashboard </h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel *ngIf="getRole() === 'User'">
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath"  width="100%">
+                    <div class="carousel-caption">
+                        
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+            <ngb-carousel *ngIf="getRole() === 'Webmaster'">
+                <ng-template ngbSlide *ngFor="let slider of webmastersliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath"  width="100%">
+                    <div class="carousel-caption">
+                        
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+              <ngb-carousel *ngIf="getRole() === 'Admin'">
+                <ng-template ngbSlide *ngFor="let slider of adminsliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath"  width="100%">
+                    <div class="carousel-caption">
+                        
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+           
+    </div>
+    <hr>
+
+</div>

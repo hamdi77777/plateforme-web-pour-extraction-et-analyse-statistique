@@ -1,0 +1,109 @@
+<div>
+    <app-page-header [heading]="'Statistics' | translate" [icon]="'fa-bar-chart-o'"></app-page-header>
+    <div class="row">
+        <div class="col col-sm-3">
+            <div class="form-group">
+                <input type="text" class="form-control input-underline input-lg" name="{{'productName' | translate}}" required
+                    [(ngModel)]="productName" id="productName"
+                    placeholder="{{ 'Introduire le nom du produit' | translate }}">
+            </div>
+            <!--  <div class="form-group">
+                <input type="text" class="form-control input-underline input-lg" name="page" required [(ngModel)]="page"
+                    id="page" placeholder="{{ 'Introduire le nombre de pages' | translate }}">
+            </div> -->
+        </div>
+        <div class="col col-sm-3">
+            <div class="form-group">
+                <p-multiSelect [options]="domains" appendTo="body" [(ngModel)]="selectedDomains"></p-multiSelect>
+            </div>
+
+        </div>
+        <div class="col col-sm-1">
+            <p-checkbox [(ngModel)]="facebookChecked" binary="true" label="Facebook"></p-checkbox>
+        </div>
+        <div class="col col-sm-1">
+            <p-checkbox [(ngModel)]="twitterChecked" binary="true" label="Twitter"></p-checkbox>
+        </div>
+        <div class="col col-sm-3">
+            <button type="button" pButton icon="pi pi-check" (click)="send(selectedDomains);"
+                label="{{'Generate Statistics' | translate}}"></button>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col col-sm-6" *ngIf="display1">
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{'Facebook Chart' | translate }}
+                </div>
+                <div class="card-body">
+
+                    <p-chart type="bar" [data]="datafcb"></p-chart>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col col-sm-6" *ngIf="display2">
+            <div class="card mb-3">
+                <div class="card-header">
+                   {{ 'Twitter Chart' | translate }}
+                </div>
+                <div class="card-body">
+                    <p-chart type="line" [data]="datatwitter"></p-chart>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-sm-6" *ngIf="display3">
+            <div class="card mb-3">
+                <div class="card-header">
+                   {{ 'YouTube Chart' | translate }}
+                </div>
+                <div style="text-align: center;" >
+               {{ 'Views' | translate}} : <p> {{views}} </p>
+            </div>
+                <div class="card-body">
+
+                    <p-chart type="pie" [data]="datayoutube"></p-chart>
+
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-6" *ngFor="let item of GraphElement">
+            <div class="card mb-3">
+                <div class="card-header">
+                   {{ 'Forum Chart' | translate}} : {{item.name}}
+                </div>
+                <div class="card-body">
+                    <p-chart type="doughnut" [data]="item.dataforum"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-sm-3" *ngIf="nb == l && display" >
+        <button type="button" pButton icon="pi pi-check" (click)="getResultat();"
+            label="{{'Afficher le résultat' | translate}}"></button>
+    </div>
+</div>
+<div class="col col-sm-12" *ngIf="selec"> <br>
+    <div >
+        <div class="card sm-12">
+        <div style="text-align: center;" >
+         <B style="color:red">   {{'Résultat' | translate }} </B>
+        </div>
+    </div> 
+    <div class="card mb-12" style="text-align: center;" >
+        <div *ngIf="aux" >
+        <B> <p> {{'Produit réussi' | translate}}</p></B>
+        </div>
+    </div>
+        <div class="card mb-12" style="text-align: center;" >
+        <div *ngIf="!aux">
+        <B>  <p> {{'Produit non réussi' | translate}}</p> </B>
+     </div>
+    </div>
+    </div>
+</div>

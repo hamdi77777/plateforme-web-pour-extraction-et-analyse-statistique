@@ -1,0 +1,61 @@
+<div class="login-page">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <img class="user-avatar" src="assets/images/logo.png" width="150px" />
+            <h1>Inscription</h1>
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <div class="form-content">
+                    <div >
+                        <input type="text" class="form-control input-underline input-lg" required id="firstname"
+                         name="firstname" formControlName="firstname"  placeholder="{{ 'Prénom' | translate }}">
+                         <div *ngIf="firstname.touched && firstname.invalid">
+                            <small *ngIf="firstname.errors.required" class="form-text text-danger">Firstname Required</small>
+                            <small *ngIf="firstname.errors.pattern" class="form-text text-danger">Invalid Firstname</small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="text" class="form-control input-underline input-lg" required id="lastname" name="lastname" formControlName="lastname"
+                            placeholder="{{ 'Nom' | translate }}">
+                            <div *ngIf="lastname.touched && lastname.invalid">
+                                <small *ngIf="lastname.errors.required" class="form-text text-danger">Lastname Required</small>
+                                <small *ngIf="lastname.errors.pattern" class="form-text text-danger">Invalid Lastname</small>
+                            </div>
+                    </div>
+
+                    <div>
+                        <input type="text" class="form-control input-underline input-lg" required id="email" name="email" formControlName="email"
+                            placeholder="{{ 'Email' | translate }}">
+                            <div *ngIf="email.touched && email.invalid">
+                                <small *ngIf="email.errors.required" class="form-text text-danger">Email Required</small>
+                                <small *ngIf="email.errors.email" class="form-text text-danger">Invalid Email</small>
+                            </div>
+                    </div>
+
+                    <div>
+                        <input type="password" class="form-control input-underline input-lg" required id="password" name="password" formControlName="password"
+                            placeholder="{{ 'Mot de passe' | translate }}">
+                            <div *ngIf="password.touched && password.invalid">
+                                <small *ngIf="password.errors.required" class="form-text text-danger">Le mot de passe est obligatoire</small>
+                                <small *ngIf="password.errors.minlength" class="form-text text-danger">Le mot de passe est invalide</small>
+                            </div>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control input-underline input-lg" required id="repassword"  name="repassword" formControlName="repassword"
+                            placeholder="{{ 'Répéter le mot de passe' | translate }}">
+                            <div *ngIf="repassword.touched && repassword.invalid">
+                                <small *ngIf="repassword.errors.required" class="form-text text-danger">Confirmer le mot de passe</small>
+                            </div>
+                            <small *ngIf="repassword.valid && repassword.value != password.value" class="form-text text-danger">
+                                Le mot de passe ne correspond pas à celui saisi avant </small>
+                    </div>
+                </div>
+              
+                <button type="submit" class="btn rounded-btn" [disabled]="registerForm.invalid || repassword.value != password.value">
+                    {{ "S'inscrire" | translate }}
+                </button>
+            
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">    
+  <div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+            <img src="https://www.svgimages.com/svg-image/s5/man-passportsize-silhouette-icon-256x256.png" alt="stack photo" class="img">
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+            <div class="container" style="border-bottom:1px solid black">
+              <h2>{{name}}</h2>
+            </div> 
+            &nbsp; &nbsp; &nbsp;
+            <ul class="container details">
+              <li><p><span  style="width:50px;"></span>ID: {{id}}</p></li>
+              <li><p><span  style="width:50px;"></span>Role: {{role}}</p></li>
+              <li><p><span  style="width:50px;"></span>Email: {{email}}</p></li>
+            </ul>
+            &nbsp;
+            <ul>
+              <li>{{'Change password' | translate}}</li> <button pTooltip="{{'Change password' | translate}}" (click)="showDialog()"
+              class="btn btn-primary" tooltipPosition="left"><i
+                  class="fa fa-pencil-square-o"></i></button> 
+            </ul>
+            
+       
+        </div>
+    </div>
+  </div>
+
+  <p-dialog header="Change password" [(visible)]="display" [modal]="true">
+    <form [formGroup]="formulaire">
+        <div class="form-content">
+          <input type="password" class="form-control input-underline input-lg" required id="password" name="password" formControlName="password"
+          placeholder="{{ 'Password' | translate }}">
+          <div *ngIf="password.touched && password.invalid">
+              <small *ngIf="password.errors.required" class="form-text text-danger">Le mot de passe est obligatoire</small>
+              <small *ngIf="password.errors.minlength" class="form-text text-danger">Le mot de passe est invalide</small>
+          </div>
+  </div>
+  <div>
+      <input type="password" class="form-control input-underline input-lg" required id="repassword"  name="repassword" formControlName="repassword"
+          placeholder="{{ 'Repeat Password' | translate }}">
+          <div *ngIf="repassword.touched && repassword.invalid">
+              <small *ngIf="repassword.errors.required" class="form-text text-danger">Confirmer le mot de passe</small>
+          </div>
+          <small *ngIf="repassword.valid && repassword.value != password.value" class="form-text text-danger">Le mot de passe ne correspond pas à celui saisi avant</small>
+  </div>
+  </form>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="display=false; saveUser()" label="{{'Save'|translate}}"></button>
+</p-footer>
+  </p-dialog>
+    

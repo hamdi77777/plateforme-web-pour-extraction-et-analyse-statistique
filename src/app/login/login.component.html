@@ -1,0 +1,23 @@
+<div class="login-page">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+            <h1>Authentification</h1>
+            <form [formGroup]="authForm">
+                <div class="form-content">
+                    <div class="form-group">
+                        <input type="text"  class="form-control input-underline input-lg" id="email"                  
+                              name="email" formControlName="email" placeholder="{{ 'Email' | translate }}">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control input-underline input-lg" id="password" name="password" formControlName="password" placeholder="{{ 'Mot de passe' | translate }}">
+                    </div>
+                </div>
+                <a class="btn rounded-btn" (click)="onLoggedin()">{{  "S'authentifier"| translate }}</a>
+                &nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/signup']">{{ "S'inscrire" | translate }}</a>
+            </form>
+        </div>
+    </div>
+</div>

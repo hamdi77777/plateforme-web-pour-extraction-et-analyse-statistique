@@ -1,0 +1,147 @@
+<div>
+    <app-page-header [heading]="'Administration'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+        <div class="col col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{'Gestion des utilisateurs' | translate}}
+                </div>
+                <div class="card-body table-responsive">
+                    <button pTooltip="{{'Ajouter un utilisateur' | translate}}" (click)="showDialog1(selectedUser)"
+                        class="btn btn-primary" tooltipPosition="left"> {{'Ajouter' | translate }}</button> <br> <br>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>{{'Identifiant' | translate}}</th>
+                                <th>{{'Firstname' | translate}}</th>
+                                <th>{{'Lastname' | translate}}</th>
+                                <th>{{'Email' | translate}}</th>
+                                <th>{{'Role' | translate}}</th>
+                                <th>{{'State' | translate}}</th>
+                                <th>{{'Actions' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users; ">
+                                <th scope="row">{{ user.id }}</th>
+                                <td> {{ user.firstname }} </td>
+                                <td>{{ user.lastname }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.role }}</td>
+                                <td>{{ user.state }}</td>
+                               <td>
+                                  <button pTooltip="{{'Edit' | translate}}" (click)="showDialog(user)"
+                                    class="btn btn-primary" tooltipPosition="left"><i
+                                        class="fa fa-pencil-square-o"></i></button> 
+                                <button pTooltip="{{'Delete' | translate}}" (click)="deleteUser(user)"
+                                    class="btn btn-danger" tooltipPosition="left"> <i
+                                        class="fa fa-trash"></i></button>
+                                
+                                
+                                </td>
+                            
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <p-dialog header="Edit" [(visible)]="display" [modal]="true">
+        <form>
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="firstname" required
+                    [(ngModel)]="selectedUser.firstname" id="firstName"  placeholder="{{ 'Firstname' | translate }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="lastname" required
+                    [(ngModel)]="selectedUser.lastname"  id="lastname" placeholder="{{ 'Lastname' | translate }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="email" required
+                    [(ngModel)]="selectedUser.email" id="email" placeholder="{{ 'Email' | translate }}">
+                </div>
+                <div>
+                    <p-dropdown [options]="roles" [(ngModel)]="selectedUser.role"  appendTo="body" required
+                        placeholder="{{'Select a Role' | translate}}" name="role" [showClear]="true"></p-dropdown>
+                </div>
+                <div>
+                    <p-dropdown [options]="trueFalse" [(ngModel)]="selectedUser.state" appendTo="body" required
+                        placeholder="{{ 'is active?' | translate }}" name="role" [showClear]="true"></p-dropdown>
+                </div>
+
+            </div>
+        </form>
+
+       <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="display=false; saveUser(selectedUser)" label="Save"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="display=false; selectedUser={}" label="Return"
+                class="ui-button-secondary"></button>
+        </p-footer>
+    
+    </p-dialog>
+
+
+
+    <p-dialog header="Ajout" [(visible)]="display1" [modal]="true">
+        <form [formGroup]="formulaire">
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="firstname" required
+                     id="firstName" formControlName="firstname" placeholder="{{ 'Firstname' | translate }}">
+                    <div *ngIf="firstname.touched && firstname.invalid">
+                        <small *ngIf="firstname.errors.required" class="form-text text-danger">Firstname Required</small>
+                        <small *ngIf="firstname.errors.pattern" class="form-text text-danger">Invalid Firstname</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="lastname" required
+                     id="lastName" formControlName="lastname" placeholder="{{ 'Lastname' | translate }}">
+                    <div *ngIf="lastname.touched && lastname.invalid">
+                        <small *ngIf="lastname.errors.required" class="form-text text-danger">Lastname Required</small>
+                        <small *ngIf="lastname.errors.pattern" class="form-text text-danger">Invalid Lastname</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="email" required
+                    id="email" formControlName="email" placeholder="{{ 'Email' | translate }}">
+                    <div *ngIf="email.touched && email.invalid">
+                        <small *ngIf="email.errors.required" class="form-text text-danger">Email Required</small>
+                        <small *ngIf="email.errors.email" class="form-text text-danger">Invalid Email</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <input type="password" class="form-control input-underline input-lg" required id="password" name="password" formControlName="password"
+                placeholder="{{ 'Password' | translate }}">
+                <div *ngIf="password.touched && password.invalid">
+                    <small *ngIf="password.errors.required" class="form-text text-danger">Password Required</small>
+                    <small *ngIf="password.errors.minlength" class="form-text text-danger">Invalid Password</small>
+                </div>
+            </div>
+
+                <div>
+                    <p-dropdown [options]="roles" appendTo="body" required formControlName="role" id="role"
+                        placeholder="{{'Select a Role' | translate}}" name="role" [showClear]="true"></p-dropdown>
+                </div>
+                <div>
+                    <p-dropdown [options]="trueFalse" appendTo="body" required formControlName="state" id="state"
+                        placeholder="{{'is active?' | translate}}'" name="state" [showClear]="true"></p-dropdown>
+                </div>
+
+            </div>
+        </form>
+
+       <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="display1=false; addUser()" label="Save"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="display1=false; selectedUser={}" label="Return"
+                class="ui-button-secondary"></button>
+        </p-footer>
+    
+    </p-dialog>
+
+
+</div>

@@ -1,0 +1,165 @@
+<div>
+    <app-page-header [heading]="'Etude Forum'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+        <div class="col col-sm-6 col-md-5">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Liste des urls 
+                </div>
+                <div class="card-body table-responsive">
+                    <button pTooltip="{{'Ajouter url' | translate}}" (click)="showDialogUrl(selectedUrl)"
+                        class="btn btn-primary" tooltipPosition="left"> {{'Ajouter' | translate}}</button> <br> <br> <br>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>{{'Url' | translate}}</th>
+                                <th>{{'Actions' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let rech of rechs; let index = index;" (click)="selectUrl(rech)"
+                                style="cursor: pointer;"
+                                [ngStyle]="{'background-color':selected.url === rech.url ? 'rgba(0, 172, 237, 0.42)' : '' }">
+                                <td> {{  rech.url }} </td>
+                                
+                                <td>
+                                    <button pTooltip="{{'Edit' | translate}}" (click)="showDialogUrl1(rech)"
+                                        class="btn btn-primary" tooltipPosition="left"><i
+                                            class="fa fa-pencil-square-o"></i></button>
+                                    <button pTooltip="{{'Delete' | translate}}" (click)="deleteUrl(rech)"
+                                        class="btn btn-danger" tooltipPosition="left"> <i
+                                            class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="col col-sm-6 col-md-7">
+            <div class="card mb-3" *ngIf="selected.url">
+                <div class="card-header">
+                    Liste des expressions pour le forum : {{selected.url}} 
+                </div>
+                <div class="card-body table-responsive">
+                    <!--  <button pTooltip="{{'Ajouter expression' | translate}}" (click)="showDialogExpression(expression)"
+                        class="btn btn-primary" tooltipPosition="left"> Ajouter</button> -->
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>{{'Expression 1' | translate}}</th>
+                                <th>{{'Expression 2' | translate}}</th>
+                                <th>{{'Expression 3' | translate}}</th>
+                                <th>{{'Expression 4' | translate}}</th>
+                                <th>{{'Expression 5' | translate}}</th>
+                                <th>{{'Expression 6' | translate}}</th>
+                                <th>{{'Actions' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+
+                                <td> {{selected.expression1}} </td>
+                                <td> {{selected.expression2Cle}} </td>
+                                <td> {{selected.expression2Valeur}} </td>
+                                <td> {{selected.expression3}} </td>
+                                <td> {{selected.expression4Cle}} </td>
+                                <td> {{selected.expression4Valeur}} </td> 
+                                <td>
+                                    <button pTooltip="{{'Edit' | translate}}" (click)="showDialogExpression(selected)"
+                                        class="btn btn-primary" tooltipPosition="left"><i
+                                            class="fa fa-pencil-square-o"></i></button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <p-dialog header="Add" [(visible)]="displayUrl" [modal]="true">
+        <form [formGroup]="formulaire">
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" name="url" required id="url" formControlName="url">
+                    <div *ngIf="url.touched && url.invalid">
+                        <small *ngIf="url.errors.required" class="form-text text-danger">{{'Url Required' | translate}}</small>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="displayUrl=false;addUrl()" label="{{'Save'|translate}}"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="displayUrl=false;selectedUrl={};" label="{{'Cancel'|translate}}"
+                class="ui-button-secondary"></button>
+        </p-footer>
+    </p-dialog>
+
+
+    <p-dialog header="Edit" [(visible)]="displayUrl1" [modal]="true">
+        <form>
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" name="url" required id="url" [(ngModel)]="selectedUrl.url"
+                        class="form-control input-underline input-lg">
+
+                </div>
+            </div>
+        </form>
+
+        <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="displayUrl1=false;saveUrl(selectedUrl)"
+                label="Save"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="displayUrl1=false;selectedUrl={};" label="Return"
+                class="ui-button-secondary"></button>
+        </p-footer>
+    </p-dialog>
+
+
+
+    <p-dialog header="Edit" [(visible)]="displayExpression" [modal]="true">
+        <form role="form">
+            <div class="form-content">
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="expression1" required
+                        [(ngModel)]="selectedExpression.expression1" id="expression1" placeholder="{{ 'expression1' | translate }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="expression2Cle" required
+                        [(ngModel)]="selectedExpression.expression2Cle" id="expression2Cle" placeholder="{{ 'expression2Cle' | translate }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="expression2Valeur" required
+                        [(ngModel)]="selectedExpression.expression2Valeur" id="expression2Valeur" placeholder="{{ 'expression2Valeur' | translate }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="expression3" required
+                        [(ngModel)]="selectedExpression.expression3" id="expression3" placeholder="{{ 'expression3' | translate }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="expression4Cle" required
+                        [(ngModel)]="selectedExpression.expression4Cle" id="expression4Cle" placeholder="{{ 'expression4Cle' | translate }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-underline input-lg" name="expression4Valeur" required
+                        [(ngModel)]="selectedExpression.expression4Valeur" id="expression4Valeur" placeholder="{{ 'expression4Valeur' | translate }}">
+                </div>
+                
+            </div>
+        </form>
+
+        <p-footer>
+            <button type="button" pButton icon="pi pi-check"
+                (click)="displayExpression=false;saveUrl(selectedExpression)" label="{{'Save'|translate}}"></button>
+            <button type="button" pButton icon="pi pi-close" (click)="displayExpression=false;selectedExpression={};"
+                label="{{'Cancel'|translate}}" class="ui-button-secondary"></button>
+        </p-footer>
+    </p-dialog>
+</div>

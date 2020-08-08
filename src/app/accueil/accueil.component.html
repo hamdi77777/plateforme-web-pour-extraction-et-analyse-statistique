@@ -1,0 +1,296 @@
+<!--<div>
+    <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide"
+                        width="100%">
+                    <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+    <div style="text-align: center">
+        <button [routerLink]="['/login']" class="btn btn-primary" tooltipPosition="left">
+            {{ 'Log in' | translate }}</button>
+        <button [routerLink]="['/signup']" class="btn btn-primary" tooltipPosition="left">
+            {{ 'Register' | translate }}</button>
+    </div>
+</div>
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SentiBrand</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center">
+        <div class="logo mr-auto">
+         <!-- <h1 class="text-light"><a [routerLink]="['/accueil']"><span>SentiBrand</span></a></h1> -->
+          <!-- Uncomment below if you prefer to use an image logo -->
+           <a ><img src="assets/images/pic.png" alt="" class="img-fluid"></a>
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li class="active"><a [routerLink]="['/accueil']"> {{ 'Accueil' | translate }}</a></li>
+            <li><a (click)="scroll(whyus)">{{ 'A propos' | translate }}</a></li>
+            <li><a (click)="scroll(about)">{{ 'Qui sommes nous' | translate }}</a></li>
+            <li> <a (click)="scroll(team)">{{ 'Fondateurs' | translate }}</a> </li>
+            <li class="drop-down"><a href=" ">Accés</a>
+              <ul>
+                <li><a [routerLink]="['/login']">{{ 'Se connecter' | translate }}</a></li>
+                <li><a [routerLink]="['/signup']">{{ " S'inscrire " | translate }} </a></li>
+                
+              </ul>
+            </li>
+            <li class="get-started"><a href="" >Commencer</a></li>
+          </ul>
+        </nav><!-- .nav-menu -->
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+      <h1>  Votre outil de veille et d'analyse des forums de discussion et des réseaux sociaux.  
+        </h1>
+      <h2>Ecouter , Analyser , Conclure et Agissez ! </h2>
+      <a (click)="scroll(about)" class="btn-get-started scrollto">Lire</a>
+    </div>
+  </section><!-- End Hero -->
+ 
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" >
+
+        <div class="row" >
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
+            <img src="assets/images/facebook.jpg" class="img-fluid" alt="">
+          </div>
+       
+   
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="300">
+            <img src="assets/images/twii.jpg" class="img-fluid" alt="">
+          </div>
+        
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="400">
+            <img src="assets/images/youtube.jpg" class="img-fluid" alt="">
+          </div>
+     
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="600">
+            <img src="assets/images/forum.png" class="img-fluid" alt="">
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    
+ <!-- ======= Why Us Section ======= -->
+ <section #whyus class="whyus" >
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-right">
+          <div class="content">
+            <h3>Pourquoi choisir SentiBrand ?</h3>
+            <p>
+                SentiBrand est une solution puissante pour la veille de vos marques dans les médias afin de se rapprocher de vos clients. <br>
+                Elle sera vos yeux et vos oreilles sur le web social.<br>
+                 Notre plateforme surveille ce qui se passe sur les canaux choisis par vous même, grâce à nos technologies d’analyse. <br>
+                 <B>Avec SentiBrand, vous atteindrez vos objectifs grâce à l'écoute.</B> 
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-8 d-flex align-items-stretch">
+          <div class="icon-boxes d-flex flex-column justify-content-center">
+            <div class="row">
+              <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="icon-box mt-4 mt-xl-0">
+                  <i class="bx bx-receipt"></i>
+                  <h4>Mesurez votre réputation</h4>
+                      <p> Mesurez la satisfaction des clients.
+                        Suivez l’évolution de vos indicateurs clés tels le pourcentage des avis positifs,négatifs et neutres ainsi que leur répartition par source et date.<br>
+                        Analysez comment votre marque est perçue en ligne pour renforcer votre stratégie de marque et gérer votre réputation!
+                      </p>
+                </div>
+              </div>
+              <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+                <div class="icon-box mt-4 mt-xl-0">
+                  <i class="bx bx-cube-alt"></i>
+                  <h4>Améliorez votre réputation</h4>
+                        <p> Comprenez comment votre marque est perçue en ligne.
+                            Notre plateforme vous permet d'identifier le taux des avis défavorables des clients. 
+                            Vous pouvez savoir où les gens parlent négativement de vos produit. <br>
+                            Allez au delà des attentes de vos clients!
+                     </p>
+                </div>
+              </div>
+              <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                <div class="icon-box mt-4 mt-xl-0">
+                  <i class="bx bx-images"></i>
+                  <h4>Pilotez vos réseaux sociaux</h4>
+                      <p>Construisez votre stratégie sociale et planifiez à l'avance. 
+                          Ciblez d'autres canaux de communications: des autres sites des forums de discussion, des autres vidéos YouTube...
+                      </p>
+                </div>
+              </div>
+            </div>
+          </div><!-- End .content-->
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Why Us Section -->
+
+
+
+       <!-- ======= Team Section ======= -->
+    <section #team class="team">
+        <div class="container">
+  
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="section-title" data-aos="fade-right">
+                <h2>Les fondateurs</h2>
+                <p>Vous pouvez contactez les fondateurs de notre plateforme à tout moment</p>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="row">
+  
+                <div class="col-lg-6">
+                  <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="pic"><img src="assets/images/team-2.jpg" class="img-fluid" alt=""></div> 
+                    <div class="member-info">
+                      <h4>ZMERLI Nihed</h4>
+                     <!-- <span>Chief Executive Officer</span> -->
+                      <p><i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        Je vous garantit une solution puissante pour la veille de vos marques dans les médias.
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                  <div class="member" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="pic"><img src="assets/images/team-1.jpg" class="img-fluid" alt=""></div>
+                    
+                    <div class="member-info">
+                      <h4>DALLAGI Hamdi</h4>
+                      <!--<span>Product Manager</span>-->
+                      <p> <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        Je suis de plus en plus motivé à améliorer notre plateforme pour vous satisfaire.
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div>
+                </div>
+              </div>
+          </div>
+         </div>
+        </div>
+        
+      </section><!-- End Team Section -->
+
+
+      <section #about class="about">
+        <div class="container">
+          <h2 class="text-center">
+              Qui sommes-nous ? 
+            </h2>
+           <p class="tt">
+            Nous sommes une équipe motivante, innovante , créative procurant des services originales.       
+            Nous avons pensé à construire notre plateforme au moment où nous avons rendu compte que la meilleure façon d'améliorer un produit et de satisfaire les consommateurs c'est de surveiller les réseaux sociaux et les forums de discussion. 
+           Notre équipe partage la même passion qui est l'amélioration régulière de notre plateforme pour vous fournir un service sans faille. 
+           Ainsi nous cherchons à vous aider à prendre de meilleurs décisions en supervisant vos marques dans les médias choisis à travers SentiBrand. <br>
+          
+          Notre plateforme peut directement être utilisée par vos équipes,quel que soit leur niveau d'expérience, grâce à nos fonctionnalités intuitives
+          , nos modèles de rapport et nos tableaux de bord qui sont faciles à utiliser. 
+        Avec l'aide de nos experts du web et des réseaux sociaux , vous apprendrez à utilisez l'outil en moins d'une journée et obtiendrez directement des résultats. 
+        </p>
+                  
+         </div>
+         </section>        
+    
+
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+  
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-12 footer-contact">
+            <h3>SentiBrand</h3>
+            <p>
+             Rue du Lac Neuchâtel <br>
+             1053 Les Berges Du Lac <br>
+              Tunis <br><br>
+              <strong>Téléphone:</strong> +216 25252831<br>
+              <strong>Email:</strong> info@SentiBrand.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Rejoignez SentiBrand</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <button type="button" class="btn btn-success" [routerLink]="['/login']">Se connecter</button></li><br> <br>
+              <li><i class="bx bx-chevron-right"></i> <button type="button" class="btn btn-success" [routerLink]="['/signup']">S'inscire</button></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="mr-md-auto text-center text-md-left">
+        <div class="copyright">
+          &copy; Copyright <strong><span>SentiBrand</span></strong>. Tous les droits sont réservés
+
+        </div>
+        
+      </div>
+     
+    </div>
+  </footer><!-- End Footer -->
+
+
+      
+ 
+  
+  </body>
+  
+  
+  </html>
+

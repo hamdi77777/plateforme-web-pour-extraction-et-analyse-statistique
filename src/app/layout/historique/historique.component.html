@@ -1,0 +1,167 @@
+<div>
+  <app-page-header [heading]="'Historique'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-sm-6 col-md-5">
+      <div class="card mb-3">
+        <div class="card-header">
+         {{ 'Historique des produits cherchés' | translate }}
+        </div> 
+        <table class="table">
+          <thead>
+            <tr>
+              <th>{{'Produits' | translate}}</th>
+              <th>{{'Dates' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let mot of motsfb; let index = index;" (click)="selectMot(mot)" 
+            style="cursor: pointer;" >
+              <td> {{mot.mot}} </td>
+              <td> {{mot.date}} </td>
+              </tr>
+              <tr *ngFor="let mot of motstwi; let index = index;" (click)="selectMot(mot)" style="cursor: pointer;" >
+                <td> {{mot.mot}} </td>
+                <td> {{mot.date}} </td>
+              </tr>
+              <tr *ngFor="let mot of motsyou; let index = index;" (click)="selectMot(mot)" style="cursor: pointer;" >
+                <td> {{mot.mot}} </td>
+                <td> {{mot.date}} </td>
+              </tr>
+              <tr *ngFor="let mot of motsfor; let index = index;" (click)="selectMot(mot)" style="cursor: pointer;" >
+                <td> {{mot.mot}} </td>
+                <td> {{mot.date}} </td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<div class="col col-sm-6 col-md-12">
+  <div class="card mb-3" *ngIf="selected.mot" >
+    <div *ngIf=" type== 'forum'">
+      <div class="card-header">
+          Résultat du produit {{selected.mot}} cherché à {{selected.date}}
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead >
+                  <tr>
+                      <th>{{'Source' | translate}}</th>
+                      <th>{{'Positive' | translate}}</th>
+                      <th>{{'Negatif' | translate}}</th>
+                      <th>{{'Neutre' | translate}}</th>
+                      
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let source of sources; let index = index;" >
+                    <td>  {{lien}} </td>
+                       <td> {{source.positive}}</td>
+                       <td> {{source.negative}} </td>
+                       <td> {{source.neutre}}</td>                    
+                 </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+</div>
+
+
+<div class="col col-sm-6 col-md-12">
+  <div class="card mb-3" *ngIf="selected.mot" >
+    <div *ngIf=" type== 'youtube'">
+      <div class="card-header">
+          Résultat du produit {{selected.mot}} cherché à {{selected.date}}
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead >
+                  <tr>
+                      <th>{{'Source' | translate}}</th>
+                      <th>{{'Nombre de views' | translate}}</th>
+                      <th>{{'Nombre de likes '| translate}}</th>
+                      <th>{{'Nombre de dislikes' | translate}}</th>
+                      
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let source of sources; let index = index;" >
+                       <td>  {{lien}} </td>
+                       <td> {{source.youViews}}</td>
+                       <td> {{source.youLikes}} </td>
+                       <td> {{source.youDislikes}}</td>                    
+                 </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+</div>
+
+  
+<div class="col col-sm-6 col-md-12">
+  <div class="card mb-3" *ngIf="selected.mot" >
+    <div *ngIf=" type== 'facebook' ">
+      <div class="card-header">
+          Résultat du produit {{selected.mot}} cherché à {{selected.date}}
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead >
+                  <tr>
+                      <th>{{'Source' | translate}}</th>
+                      <th>{{'Nombre de likes' | translate}}</th>
+                      <th>{{'Nombre de commentaires '| translate}}</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let source of sources; let index = index;" >
+                       <td>  {{type}} </td>
+                       <td> {{source.fbLikes}}</td>
+                       <td> {{source.fbComments}} </td>                    
+                 </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class="col col-sm-6 col-md-12">
+  <div class="card mb-3" *ngIf="selected.mot" >
+    <div *ngIf=" type== 'twitter' ">
+      <div class="card-header">
+          Résultat du produit {{selected.mot}} cherché à {{selected.date}}
+      </div>
+      <div class="card-body table-responsive">
+          <table class="table">
+              <thead >
+                  <tr>
+                      <th>{{'Source' | translate}}</th>
+                      <th>{{'Nombre de likes' | translate}}</th>
+                      <th>{{'Nombre de retweets'| translate}}</th>
+                      <th>{{'Nombre de replies'| translate}}</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let source of sources; let index = index;" >
+                       <td>  {{type}} </td>
+                       <td> {{source.twLikes}}</td>
+                       <td> {{source.twRetweets}} </td>    
+                       <td> {{source.twReplies}} </td>                       
+                 </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+</div>
+
+
